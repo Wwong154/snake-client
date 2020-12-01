@@ -22,6 +22,15 @@ const setupInput = function(conn) {
       case 'd':
         conn.write("Move: right");
         break;
+      case '1':
+        conn.write("Say: HAHA");
+        break;
+      case '2':
+        conn.write("Say: YES");
+        break;
+      case '3':
+        conn.write("Say: NOOO");
+        break;
     }
   });
 
