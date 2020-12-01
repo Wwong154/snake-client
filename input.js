@@ -1,3 +1,4 @@
+const { MOVEMENT, MSG } = require('./constants')
 let connection;
 
 const setupInput = function(conn) {
@@ -7,33 +8,14 @@ const setupInput = function(conn) {
   stdin.setEncoding('utf8');
   stdin.resume();
   stdin.on('data', (key) => {
-    switch (key) {
-      case '\u0003':
-        process.exit();
-      case 'w':
-        conn.write("Move: up");
-        break;
-      case 'a':
-        conn.write("Move: left");
-        break;
-      case 's':
-        conn.write("Move: down");
-        break;
-      case 'd':
-        conn.write("Move: right");
-        break;
-      case '1':
-        conn.write("Say: HAHA");
-        break;
-      case '2':
-        conn.write("Say: YES");
-        break;
-      case '3':
-        conn.write("Say: NOOO");
-        break;
+    if (key === '\u0003') {
+      process.exit();
+    } else if (MOVEMENT.hasOwnProperty(key.toLowerCase())) {
+      conn.write(MOVEMENT[key]);
+    } else if (MSG.hasOwnProperty(key)) {
+      conn.write(MSG[key]);
     }
   });
-
   return stdin;
 };
 module.exports = { setupInput }
