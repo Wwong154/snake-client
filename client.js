@@ -13,7 +13,7 @@ const connect = function() {
     conn.write("Name: WW.");
   });
   // interpret incoming data as text
-  conn.setEncoding('utf8'); 
+  conn.setEncoding('utf8');
   conn.on('data', (data) => {
     console.log("From host: ", data);
   });
